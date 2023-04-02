@@ -63,3 +63,38 @@ exports.getAllFaculty = async (req, res) => {
 		res.status(400).json({ success: true, message: error.message });
 	}
 };
+
+exports.changeRole = async (req, res) => {
+	try {
+		const user = await userModel.findByIdAndUpdate(
+			{ _id: req.body.userId },
+			{
+				role: 'teacher'
+			},
+			{
+				new: true
+			}
+		);
+
+		res.status(200).json({
+			success: true,
+			message: 'User Role changed successfully',
+			user
+		});
+	} catch (error) {
+		res.status(400).json({ success: true, message: error.message });
+	}
+};
+
+exports.getAllStudents = async (req, res) => {
+	try {
+		const students = await userModel.find({ role: 'student' });
+
+		res.status(200).json({
+			success: true,
+			students
+		});
+	} catch (error) {
+		res.status(400).json({ success: true, message: error.message });
+	}
+};

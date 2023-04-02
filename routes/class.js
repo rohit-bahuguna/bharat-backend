@@ -2,7 +2,10 @@ const express = require('express');
 const {
 	createClass,
 	createClassesFromCSV,
-	getAllClasses
+	getAllClasses,
+	teacherUpdateClass,
+	adminUpdateClass,
+	deleteClass
 } = require('../controllers/classController');
 const { customRole } = require('../middlewares/customRoles');
 const classRouter = express.Router();
@@ -15,5 +18,15 @@ classRouter
 	.post(isUserLoggedIn, customRole, createClassesFromCSV);
 
 classRouter.route('/').get(isUserLoggedIn, getAllClasses);
+
+classRouter.route('/update/:id').put(isUserLoggedIn, teacherUpdateClass);
+
+classRouter
+	.route('/adminupdate/:id')
+	.put(isUserLoggedIn, customRole, adminUpdateClass);
+
+classRouter
+	.route('/delete/:id')
+	.delete(isUserLoggedIn, customRole, deleteClass);
 
 module.exports = classRouter;
