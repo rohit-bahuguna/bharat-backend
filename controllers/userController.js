@@ -66,8 +66,8 @@ exports.getAllFaculty = async (req, res) => {
 
 exports.changeRole = async (req, res) => {
 	try {
-		const user = await userModel.findByIdAndUpdate(
-			{ _id: req.body.userId },
+		const user = await userModel.findOneAndUpdate(
+			{ _id: req.body.userId, role: 'student' },
 			{
 				role: 'teacher'
 			},
@@ -75,6 +75,10 @@ exports.changeRole = async (req, res) => {
 				new: true
 			}
 		);
+
+		if (!user) {
+			throw new Error('can not changed role of user');
+		}
 
 		res.status(200).json({
 			success: true,

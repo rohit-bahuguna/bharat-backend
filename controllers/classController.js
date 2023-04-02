@@ -165,3 +165,13 @@ exports.adminUpdateClass = async (req, res) => {
 		res.status(400).json({ success: false, message: error.message });
 	}
 };
+
+exports.getClassById = async (req, res) => {
+	try {
+		const data = await classModel.findOne({ _id: req.params.id });
+
+		res.status(200).json({ success: true, data });
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
+};
