@@ -185,3 +185,12 @@ exports.getAllClassesOfAcourse = async (req, res) => {
 		res.status(400).json({ success: false, message: error.message });
 	}
 };
+exports.getAllClassesOfATeacher = async (req, res) => {
+	try {
+		const classes = await classModel.find({ faculty: req.params.teacherId });
+
+		res.status(200).json({ success: true, classes });
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
+};
