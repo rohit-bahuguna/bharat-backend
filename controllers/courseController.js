@@ -34,3 +34,17 @@ exports.getAllCourse = async (req, res) => {
 		res.status(400).json({ success: false, message: error.message });
 	}
 };
+
+exports.getAllTeachersCourses = async (req, res) => {
+	try {
+		const courses = await courseModel.find({
+			faculities: { $in: [req.params.teacherId] }
+		});
+		res.status(200).json({
+			success: true,
+			courses
+		});
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
+};

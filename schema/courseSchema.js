@@ -6,6 +6,13 @@ const courseSchema = new mongoose.Schema(
 			type: String,
 			required: true
 		},
+		faculities: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				required: true,
+				ref: 'Teacher'
+			}
+		],
 		startDate: {
 			type: Date,
 			required: true

@@ -54,7 +54,7 @@ exports.signIn = async (req, res) => {
 			throw new Error('Invalid Password');
 		}
 		teacher.password = undefined;
-		setCookies(res, teacher, `welcome ${teacher.name}`);
+		setCookies(res, teacher, `welcome ${teacher.firstName}`);
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({

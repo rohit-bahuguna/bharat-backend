@@ -178,7 +178,7 @@ exports.getClassById = async (req, res) => {
 
 exports.getAllClassesOfAcourse = async (req, res) => {
 	try {
-		const classes = await classModel.findOne({ classOf: req.body.courseId });
+		const classes = await classModel.find({ classOf: req.params.courseId });
 
 		res.status(200).json({ success: true, classes });
 	} catch (error) {
