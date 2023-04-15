@@ -90,15 +90,4 @@ exports.changeRole = async (req, res) => {
 	}
 };
 
-exports.getAllStudents = async (req, res) => {
-	try {
-		const students = await userModel.find({ role: 'student' });
 
-		res.status(200).json({
-			success: true,
-			students
-		});
-	} catch (error) {
-		res.status(400).json({ success: true, message: error.message });
-	}
-};

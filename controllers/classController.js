@@ -1,5 +1,5 @@
 const classModel = require('../schema/classSchema');
-const userModel = require('../schema/userSchema');
+const userModel = require('../schema/teacherSchema');
 const csv = require('csvtojson');
 
 exports.createClass = async (req, res) => {
@@ -171,6 +171,16 @@ exports.getClassById = async (req, res) => {
 		const data = await classModel.findOne({ _id: req.params.id });
 
 		res.status(200).json({ success: true, data });
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
+};
+
+exports.getAllClassesOfAcourse = async (req, res) => {
+	try {
+		const classes = await classModel.findOne({ classOf: req.body.courseId });
+
+		res.status(200).json({ success: true, classes });
 	} catch (error) {
 		res.status(400).json({ success: false, message: error.message });
 	}

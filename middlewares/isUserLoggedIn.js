@@ -1,4 +1,4 @@
-const userModel = require('../schema/userSchema');
+const userModel = require('../schema/teacherSchema');
 const jwt = require('jsonwebtoken');
 
 exports.isUserLoggedIn = async (req, res, next) => {

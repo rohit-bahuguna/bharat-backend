@@ -17,7 +17,7 @@ authRouter.route('/signin').post(signIn);
 
 authRouter.route('/faculty').get(isUserLoggedIn, getAllFaculty);
 
-authRouter.route('/students').get(isUserLoggedIn, getAllStudents);
+// authRouter.route('/students').get(isUserLoggedIn, getAllStudents);
 
 authRouter.route('/change-role').put(isUserLoggedIn, customRole, changeRole);
 

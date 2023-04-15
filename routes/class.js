@@ -6,7 +6,8 @@ const {
 	teacherUpdateClass,
 	adminUpdateClass,
 	deleteClass,
-	getClassById
+	getClassById,
+	getAllClassesOfAcourse
 } = require('../controllers/classController');
 const { customRole } = require('../middlewares/customRoles');
 const classRouter = express.Router();
@@ -31,4 +32,7 @@ classRouter
 	.delete(isUserLoggedIn, customRole, deleteClass);
 
 classRouter.route('/getclassbyid/:id').get(isUserLoggedIn, getClassById);
+
+classRouter.route('/:courseId').get(isUserLoggedIn, getAllClassesOfAcourse);
+
 module.exports = classRouter;
